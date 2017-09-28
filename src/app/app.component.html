@@ -10,6 +10,7 @@
                 <tr>
                     <td>Id</td>
                     <td>Title</td>
+                </tr>
             </thead>
             <tr *ngFor="let p of podcasts$ | async" (click)="onSelect(p)" style="cursor: pointer;">
                 <td>{{p.id}}</td>
