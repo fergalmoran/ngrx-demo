@@ -5,11 +5,17 @@
     </h1>
     <div class="col-md-6">
         <h1>List of things</h1>
-        <ul class="list-unstyled">
-            <li *ngFor="let p of podcasts$ | async" (click)="onSelect(p)">
-                {{p.title}}
-            </li>
-        </ul>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Title</td>
+            </thead>
+            <tr *ngFor="let p of podcasts$ | async" (click)="onSelect(p)" style="cursor: pointer;">
+                <td>{{p.id}}</td>
+                <td>{{p.title}}</td>
+            </tr>
+        </table>
     </div>
     <div class="col-md-6">
         <h1>Details are here</h1>
