@@ -4,12 +4,14 @@ export interface State {
     loading: boolean;
     entities: { [id: string]: any };
     result: string[];
+    selected: any;
 }
 
 export const initialState: State = {
     loading: false,
     entities: {},
-    result: []
+    result: [],
+    selected: null
 }
 
 export function reducer(state = initialState, action: podcasts.Actions): State {
@@ -18,6 +20,7 @@ export function reducer(state = initialState, action: podcasts.Actions): State {
             return {
                 ...state,
                 result: [],
+                selected: null,
                 loading: true
             }
         }
@@ -38,6 +41,10 @@ export function reducer(state = initialState, action: podcasts.Actions): State {
                 loading: false,
             };
         }
+
+        case podcasts.SELECT_ITEM:
+            console.log('SELECTED ITEM');
+            return state;
 
         default: {
             return state;

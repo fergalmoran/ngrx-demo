@@ -1,10 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Hello, {{title}}!
-  </h1>
-  <div>
-      <ul class="list-unstyled">
-          <li *ngFor="let p of podcasts$ | async">{{p.title}}</li>
-      </ul>
+    <h1>
+        Hello, {{title}}!
+    </h1>
+    <div class="col-md-6">
+        <h1>List of things</h1>
+        <ul class="list-unstyled">
+            <li *ngFor="let p of podcasts$ | async" (click)="onSelect(p)">
+                {{p.title}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h1>Details are here</h1>
+    </div>
 </div>

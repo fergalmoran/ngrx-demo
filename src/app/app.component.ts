@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { LoadAction } from 'app/actions/podcasts.actions';
+import { LoadAction, SelectItemAction } from 'app/actions/podcasts.actions';
 import { State } from 'app/reducers';
 
 @Component({
@@ -15,8 +15,13 @@ export class AppComponent {
     podcasts$: Observable<any>;
 
     constructor(private store: Store<State>){
-        console.log('AppComponent', 'ctor', store); 
+        console.log('AppComponent', 'ctor', store);
         this.podcasts$ = this.store.select(p => p.podcasts.result);
         this.store.dispatch(new LoadAction());
+    }
+
+    onSelect(p){
+        console.log(p);
+        this.store.dispatch(new SelectItemAction(p.id));
     }
 }
