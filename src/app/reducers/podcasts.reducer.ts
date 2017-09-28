@@ -24,28 +24,24 @@ export function reducer(state = initialState, action: podcasts.Actions): State {
                 loading: true
             }
         }
-
         case podcasts.LOAD_SUCCESS: {
-
             return {
                 ...state,
                 result: action.payload,
                 loading: false,
             };
         }
-
         case podcasts.LOAD_FAIL: {
-
             return {
                 ...state,
                 loading: false,
             };
         }
-
-        case podcasts.SELECT_ITEM:
-            console.log('SELECTED ITEM');
-            return state;
-
+        case podcasts.SELECT_ITEM_SUCCESS:
+            return {
+                ...state,
+                selected: action.payload
+            };
         default: {
             return state;
         }

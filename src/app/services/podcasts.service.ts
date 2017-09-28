@@ -10,4 +10,9 @@ export class PodcastsService {
         console.log('PodcastsService', 'get');
         return this.http.get('https://jsonplaceholder.typicode.com/posts');
     }
+
+    getItem(id: any) : Observable<any> {
+        console.log('PodcastsService', 'get');
+        return this.http.get('https://jsonplaceholder.typicode.com/posts/' + id);
+    }
 }

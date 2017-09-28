@@ -17,10 +17,16 @@ export class PodcastsEffects {
 
     @Effect() get$ = this.actions$
     .ofType(podcasts.LOAD)
-    .switchMap(payload => this.podcastsService.get()
-               // If successful, dispatch success action with result
-               .map(res => ({ type: podcasts.LOAD_SUCCESS, payload: res.json() }))
-               // If request fails, dispatch failed action
-               .catch(() => Observable.of({ type: podcasts.LOAD_FAIL}))
-              );
+    .switchMap(p => this.podcastsService.get()
+        .map(res => ({ type: podcasts.LOAD_SUCCESS, payload: res.json() }))
+        .catch(() => Observable.of({ type: podcasts.LOAD_FAIL}))
+        );
+
+     @Effect() select$ = this.actions$
+    .ofType(podcasts.SELECT_ITEM)
+    .map((action: podcasts.SelectItemAction) => action.payload)
+    .switchMap(id => this.podcastsService.getItem(id)
+        .map(res => ({ type: podcasts.SELECT_ITEM_SUCCESS, payload: res.json() }))
+        .catch(() => Observable.of({ type: podcasts.SELECT_ITEM_FAILED}))
+        );
 }

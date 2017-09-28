@@ -13,10 +13,12 @@ import { State } from 'app/reducers';
 export class AppComponent {
     title = 'Sailor';
     podcasts$: Observable<any>;
+    selected$: Observable<any>;
 
     constructor(private store: Store<State>){
         console.log('AppComponent', 'ctor', store);
         this.podcasts$ = this.store.select(p => p.podcasts.result);
+        this.selected$ = this.store.select(p => p.podcasts.selected);
         this.store.dispatch(new LoadAction());
     }
 
